@@ -1,5 +1,5 @@
 <template>
-  <div class="app-shell-component">
+  <div class="app-main-component">
     <!-- Header -->
     <HeaderApp 
       :userinfo="$store.getters.userinfo"
@@ -61,7 +61,8 @@
       Used to inject child components
     */
       components: {
-        HeaderApp, FooterApp
+        HeaderApp, 
+        FooterApp
       },
 
       // Used to define properties class
@@ -73,14 +74,18 @@
         onLogout: function(event){
           // Save value in the store
           this.$store.dispatch('logoutOperation', event)
+          console.log('[DEBUG App onLogout logoutOperation]', event);
         },
       },
 
       created: function(){
         // Subscribe to store mutations
         this.$store.subscribe( mutations => {
+          console.log('[DEBUG App created $store mutations]', mutations);
+
           // Switch mutation
           switch( mutations.type ){
+            
             case 'userinfo': 
               if( !mutations.payload.data ) this.$router.push({ name: 'HomeView' })
               break;
@@ -89,9 +94,9 @@
           }
         })
       },
-
       mounted: function(){}
   }
+  console.log('[DEBUG App dexieDb]', dexieDb);
 </script>
 
 <!-- Import CSS -->

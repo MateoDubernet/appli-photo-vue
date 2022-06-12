@@ -10,7 +10,7 @@
         <h1 class="is-size-2">Album view</h1>
         <!-- 
           TODO: Display list of album snapshoots
-          - Get all lbum snapshoots
+          - Get all album snapshoots
           - Generate a loop 'v-for' on snapshoot list
           - Display 'BaseImage' for each snapshoot
           - Link to display single snapshoot

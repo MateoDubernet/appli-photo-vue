@@ -3,7 +3,7 @@
     Import and defien Dexie.js
 */
     import Dexie from 'dexie';
-    export const dexieDb = new Dexie('insta-clone');
+    export const dexieDb = new Dexie('appli-photo-vue');
 
 /* 
     [DEXIE] Setup

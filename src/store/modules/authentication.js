@@ -29,7 +29,7 @@ export default{
             */
                 // Save new snapshot in IndexDB with Dexie.js
                 const newUserId = await dexieDb['users'].add( data );
-
+                
                 // Get new created snapshoot
                 const newUser = await dexieDb['users'].get(newUserId);
         },

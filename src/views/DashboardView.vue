@@ -1,5 +1,8 @@
 <template>
   <section class="dashboard-view-component section">
+    <article class="box">
+      <h1 class="is-size-4">Dashboard Component</h1>
+    </article>
       <!-- 
         TODO: Display list of albums
         - Get album list from the store

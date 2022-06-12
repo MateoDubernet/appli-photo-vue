@@ -5,7 +5,7 @@ export default{
     // Define state
     state: {
         // Snapshot state
-        album: null,
+        albums:  JSON.parse( localStorage.getItem('albums') ) || null,
         albumlist: [],
 
         // Snapshot state
@@ -26,7 +26,7 @@ export default{
 
     // Define mutation (eq. setters)
     mutations: {
-        // Snapshot mutations
+        // Album mutations
         album( state, payload){ state.album = payload.data },
         albumlist( state, payload){ state.albumlist.push(payload.data) },
 
@@ -50,7 +50,8 @@ export default{
 
                 // Get new created snapshoot
                 const newAlbum = await dexieDb.albums.get(newAlbumId);
-
+                console.log('[DEBUG snapshoot.js saveAlbumOperation]', newAlbum);
+                console.log('[DEBUG snapshoot.js saveAlbumOperation] commit', commit);
             /* 
                 [STORE] Update
                 Commit new state with indexed object

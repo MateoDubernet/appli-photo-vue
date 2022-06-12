@@ -2,31 +2,27 @@
   <!-- Bind 'submit' event to emit 'onSubmit' event -->
   <form 
     class="base-form-component"
-    @submit.prevent="onSubmit(cmpFormvalue.fieldsets)"
-  >
+    @submit.prevent="onSubmit(cmpFormvalue.fieldsets)">
     <h2 class="title is-size-4">{{cmpFormvalue.title}}</h2>
 
     <!-- Display DOM loop: v-for -->
     <fieldset 
       class="mb-4"
-      v-for="(item, idx) in cmpFormvalue.fieldsets" 
-      :key="`item-${idx}`"
-    >
+      v-for="(item, id) in cmpFormvalue.fieldsets" 
+      :key="`item-${id}`">
       <label 
         class="label"
-        :for="`item-${item.name}-${idx}`" 
-        v-text="item.label"
-      />
+        :for="`item-${item.name}-${id}`" 
+        v-text="item.label"/>
 
       <input 
         class="input"
         :type="item.type" 
-        :id="`item-${item.name}-${idx}`" 
+        :id="`item-${item.name}-${id}`" 
         :name="item.name"
         :required="item.required"
         :min="item.min"
-        v-model="item.value"
-      >
+        v-model="item.value">
     </fieldset>
 
     <BaseCallToAction 
@@ -36,11 +32,9 @@
         isfull: true,
         isprimary: true,
       }"
-      @onClick="onSubmit(cmpFormvalue.fieldsets)"
-    />
+      @onClick="onSubmit(cmpFormvalue.fieldsets)"/>
   </form>
 </template>
-
 
 <script>
 /* 
@@ -96,14 +90,21 @@
         onSubmit: function(fieldsets){
           // Extarct form value
           let returnedObject = {};
-
+          console.log('[DEBUG BaseForm onSubmit] fieldsets:', fieldsets);
+          console.log('[DEBUG BaseForm onSubmit] cmpFormvalue:', this.cmpFormvalue);
+          
           // Get each form fieldset
           for( let item of fieldsets ){
             returnedObject[item.name] = item.value
+
+            console.log('[DEBUG BaseForm onSubmit] item:', item);
+            console.log('[DEBUG BaseForm onSubmit] item.value:', item.value);
+            console.log('[DEBUG BaseForm onSubmit] item.value:', item.name);
           }
 
           // Return computed value
           this.$emit('onSubmit', returnedObject)
+          console.log('[DEBUG BaseForm onSubmit] returnedObject:', returnedObject);
         },
       },
   }

@@ -6,27 +6,31 @@
       <!-- Inject value to child compoenent has a HTML property -->
       <BaseForm 
         class="mb-4"
-        :formvalue="cmpStep === 'login' ? cmpLoginForm : cmpRegisterForm"
-        @onSubmit="onSubmit(cmpStep, $event)"/>
+        :formvalue="formName === 'login' ? loginForm : registerForm"
+        @onSubmit="onSubmit(formName, $event)"/>
       
       <!-- Bind DOM event: @Event -->
       <BaseCallToAction 
         :item="{
           type: `button`,
           content: 
-            cmpStep === 'login'
+            formName === 'login'
             ? `Don't have an account? Create one now.`
             : `Got an account? Go to login.`,
           isfull: false,
           isprimary: false,
-          action: cmpStep === 'login' ? 'register' : 'login'
+          action: formName === 'login' ? 'register' : 'login'
         }"
-        @onClick="cmpStep = $event"/>
+        @onClick="formName = $event"/>
     </article>
     <article 
       class="box"
       v-else>
       <h1 class="is-size-4">Bienvenue {{ $store.getters.userinfo.name }}</h1>
+
+          <div class="box" v-for="item in $store.getters.albumlist" :key="item.id">
+            {{item}}
+          </div>
     </article>
   </section>
 </template>
@@ -49,10 +53,10 @@
     data(){
       return {
         // Basic values
-        cmpStep: 'login',
+        formName: 'login',
 
         // Form values
-        cmpLoginForm: {
+        loginForm: {
           title: `Connect to your account`,
           submit: `Login`,
           fieldsets: [
@@ -62,7 +66,7 @@
               name: `email`,
               required: true,
               min: 5,
-              value: null
+              value: 'mateo.dubernet@gmail.com'
             },
             {
               label: `Password`,
@@ -70,11 +74,11 @@
               name: `password`,
               required: true,
               min: 5,
-              value: null
+              value: 'test'
             }
           ]
         },
-        cmpRegisterForm: {
+        registerForm: {
           title: `Create your account`,
           submit: `Register`,
           fieldsets: [
@@ -84,7 +88,7 @@
               name: `name`,
               required: true,
               min: 2,
-              value: null
+              value: 'Mateo'
             },
             {
               label: `Email`,
@@ -92,7 +96,7 @@
               name: `email`,
               required: true,
               min: 5,
-              value: null
+              value: 'mateo.dubernet@gmail.com'
             },
             {
               label: `Password`,
@@ -100,7 +104,7 @@
               name: `password`,
               required: true,
               min: 5,
-              value: null
+              value: 'test'
             },
             {
               label: `Repeate password`,
@@ -108,7 +112,7 @@
               name: `password-repeate`,
               required: true,
               min: 5,
-              value: null
+              value: 'test'
             }
           ]
         }
@@ -120,25 +124,30 @@
       Used to add functionnalies
     */
       methods: {
-        onSubmit: function(step, event){
+        onSubmit: function(formName, event){
           // Check register form
-          if( step === 'register' ){
+          console.log('[DEBUG HomeView onSubmit $store]', this.$store);
+          console.log('[DEBUG HomeView $store.getters.userinfo]', this.$store.getters.userinfo);
+          console.log('[DEBUG HomeView $store.getters.albumlist]', this.$store.getters.albumlist);
+          
+          if( formName === 'register' ){
             if( event.password === event['password-repeate'] ){
               // Delete unused property
               delete event['password-repeate'];
 
               // Use store action
               this.$store.dispatch('registerOperation', event)
+              console.log('[DEBUG HomeView onSubmit registerOperation]', event);
             }
             else{ alert(`Password missmatch`) }
           }
           else{
             // Use store action
             this.$store.dispatch('loginOperation', event)
+            console.log('[DEBUG HomeView onSubmit loginOperation]', event);
           }
         },
       },
-
     /* 
       [VUE] Component
       Used to inject child components

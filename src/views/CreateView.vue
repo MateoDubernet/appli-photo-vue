@@ -1,6 +1,6 @@
 <template>
   <section class="snapshoot-view-component section">
-      <template v-if="$route.params.type === 'snapshoot'">
+      <div v-if="$route.params.type === 'snapshoot'">
         <!-- Display video stream -->
         <video 
           ref="webcamhandeler"
@@ -13,15 +13,16 @@
             :formvalue="cmpSnapshootForm"
             @onSubmit="onSubmit($event)"/>
         </article>
-      </template>
-      <template v-if="$route.params.type === 'album'">
-        <article class="box">
+      </div>
+
+      <div v-if="$route.params.type === 'album'">
+        <article class="box" >
           <BaseForm 
             class="mb-4"
             :formvalue="cmpAlbumForm"
             @onSubmit="onSubmit($event)"/>
         </article>
-      </template>
+      </div>
   </section>
 </template>
 
@@ -132,7 +133,7 @@
         else if( this.$route.params.type === 'album' ){
           // Add user id
           event.author = this.$store.getters.userinfo.id;
-          
+          console.log('[DEBUG CreateView onSubmit]', event);
           // Dispatch store action
           this.$store.dispatch('saveAlbumOperation', event)
         }

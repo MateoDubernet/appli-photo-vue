@@ -6,8 +6,8 @@
     import { createStore } from "vuex";
 
     // Store modules
-    import auth from "./modules/auth";
-    import media from "./modules/media";
+    import authentication from "./modules/authentication";
+    import snapshoot from "./modules/snapshoot";
 
 /* 
     [EXPORT] Store
@@ -15,7 +15,7 @@
 */
     export default createStore({
         modules: {
-            auth: auth,
-            media: media
+            authentication: authentication,
+            snapshoot: snapshoot
         }
     })
