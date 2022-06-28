@@ -25,15 +25,21 @@
             component: () => import('../views/DashboardView.vue')
         },
         {
-            path: '/add/:type',
-            name: 'CreateView',
+            path: '/add/album',
+            name: 'CreateAlbum',
             meta: { authguard: true },
             component: () => import('../views/CreateView.vue')
         },
         {
-            path: '/:type/:id',
-            name: 'SingleView',
+            path: '/add/snapshoot/album/:id',
+            name: 'CreateSnapshoot',
             meta: { authguard: true },
+            component: () => import('../views/CreateView.vue')
+        },
+        {
+            path: '/single/:type/:id',
+            name: 'SingleView',
+            meta: { authguard: false },
             component: () => import('../views/SingleView.vue')
         },
     ];
@@ -64,6 +70,7 @@
 
                 // Check user info from API
                 if(connectedUser.status === 200){
+                    
                     next();
                 }
                 else{

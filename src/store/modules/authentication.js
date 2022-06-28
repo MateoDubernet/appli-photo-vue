@@ -2,27 +2,30 @@
 /* eslint-disable no-async-promise-executor */
 
 import { dexieDb } from "@/services/dexie.service"
+import AppRouter from "@/router";
 
 export default{
     // Define state
     state: {
         userinfo: JSON.parse( localStorage.getItem('userinfo') ) || null,
+        loginError: null,
     },
 
     // Define getters
     getters: {
         userinfo: (state) => state.userinfo,
+        loginError: (state) => state.loginError,
     },
 
     // Define mutation (eq. setters)
     mutations: {
-        userinfo( state, payload){ state.userinfo = payload.data }
+        userinfo( state, payload){ state.userinfo = payload.data },
     },
 
     // Define actions
     actions: {
         // Action to register user
-        async registerOperation( { commit, dispatch, state }, data ){
+        async registerOperation( { commit, dispatch, state }, data, ){
             /* 
                 [DEXIE] Save
                 Save API response in Dexie
@@ -40,17 +43,26 @@ export default{
                 [DEXIE] Save
                 Save API response in Dexie
             */
+           
                 // Get new created snapshoot
                 const connectedUser = await dexieDb['users'].get(data);
+                
                 if(connectedUser){
                     // Save user info in localStorage
                     localStorage.setItem('userinfo', JSON.stringify(connectedUser));
-
+                    
                     /* 
                         [STORE] Update
                         Commit new state with indexed object
                     */
                         commit( 'userinfo', { data: connectedUser } )
+                        if (this.getters.userinfo) {
+                            AppRouter.push({ name: 'DashboardView' })
+                          }
+                          console.log(this.getters.userinfo);
+                } else {
+                    this.state.loginError = "Login Error"
+                    console.log(this.state.loginError);
                 }
         },
 

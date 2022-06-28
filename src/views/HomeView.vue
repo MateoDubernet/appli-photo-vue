@@ -8,6 +8,10 @@
         class="mb-4"
         :formvalue="formName === 'login' ? loginForm : registerForm"
         @onSubmit="onSubmit(formName, $event)"/>
+
+      <div class="error">
+        <BaseFlashnote/>
+      </div>
       
       <!-- Bind DOM event: @Event -->
       <BaseCallToAction 
@@ -23,15 +27,6 @@
         }"
         @onClick="formName = $event"/>
     </article>
-    <article 
-      class="box"
-      v-else>
-      <h1 class="is-size-4">Bienvenue {{ $store.getters.userinfo.name }}</h1>
-
-          <div class="box" v-for="item in $store.getters.albumlist" :key="item.id">
-            {{item}}
-          </div>
-    </article>
   </section>
 </template>
 
@@ -40,6 +35,7 @@
   [IMPORT] Modules/components
 */
   import BaseForm from '../components/base/BaseForm.vue';
+  import BaseFlashnote from '../components/base/BaseFlashnote.vue';
   import BaseCallToAction from '../components/base/BaseCallToAction.vue';
 
 /* 
@@ -124,12 +120,10 @@
       Used to add functionnalies
     */
       methods: {
+
         onSubmit: function(formName, event){
           // Check register form
-          console.log('[DEBUG HomeView onSubmit $store]', this.$store);
-          console.log('[DEBUG HomeView $store.getters.userinfo]', this.$store.getters.userinfo);
-          console.log('[DEBUG HomeView $store.getters.albumlist]', this.$store.getters.albumlist);
-          
+
           if( formName === 'register' ){
             if( event.password === event['password-repeate'] ){
               // Delete unused property
@@ -137,14 +131,11 @@
 
               // Use store action
               this.$store.dispatch('registerOperation', event)
-              console.log('[DEBUG HomeView onSubmit registerOperation]', event);
             }
             else{ alert(`Password missmatch`) }
           }
           else{
-            // Use store action
             this.$store.dispatch('loginOperation', event)
-            console.log('[DEBUG HomeView onSubmit loginOperation]', event);
           }
         },
       },
@@ -153,7 +144,16 @@
       Used to inject child components
     */
       components: {
-        BaseForm, BaseCallToAction
+        BaseForm, 
+        BaseCallToAction,
+        BaseFlashnote
       }
   }
 </script>
+
+<style>
+.error{
+  margin-bottom: 15px;
+  color: red;
+}
+</style>

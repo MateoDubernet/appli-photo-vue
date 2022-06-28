@@ -32,9 +32,7 @@ export default{
 
         // Snapshot mutations
         snapshoot( state, payload){ state.snapshoot = payload.data },
-        snapshootlist( state, payload){ 
-            state.snapshootlist.push(payload.data) 
-        },
+        snapshootlist( state, payload){ state.snapshootlist.push(payload.data) },
     },
 
     // Define actions
@@ -50,8 +48,6 @@ export default{
 
                 // Get new created snapshoot
                 const newAlbum = await dexieDb.albums.get(newAlbumId);
-                console.log('[DEBUG snapshoot.js saveAlbumOperation]', newAlbum);
-                console.log('[DEBUG snapshoot.js saveAlbumOperation] commit', commit);
             /* 
                 [STORE] Update
                 Commit new state with indexed object
@@ -72,7 +68,6 @@ export default{
 
                 // Get new created snapshoot
                 const newSnapshoot = await dexieDb.snapshoots.get(newSnapshootId);
-
             /* 
                 [STORE] Update
                 Commit new state with indexed object

@@ -1,8 +1,10 @@
 <template>
   <section class="dashboard-view-component section">
     <article class="box">
-      <h1 class="is-size-4">Dashboard Component</h1>
+      <h1 class="component-title">Albums</h1>
+          <BasePushAlbum/>
     </article>
+
       <!-- 
         TODO: Display list of albums
         - Get album list from the store
@@ -22,13 +24,33 @@
   [CTRL] App.vue
   Define compoenent controller
 */
+
+  import BasePushAlbum from '../components/base/BasePushAlbum.vue';
+
   export default {
     name: 'DashboardView',
+
+      data(){
+        return {
+          album: Object,
+          snapshoot: Object,
+          albumSnapshootList: [],
+        }
+      },
 
     /* 
       [VUE] Component
       Used to inject child components
     */
-      components: {}
+      components: {
+        BasePushAlbum,
+      },
   }
 </script>
+<style>
+ .component-title{
+    font-size: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 25px;
+ }
+</style>

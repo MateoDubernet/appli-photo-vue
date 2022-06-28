@@ -12,18 +12,20 @@
           class="button"
           v-text="`Logout`"
           @click.prevent="$emit('onLogout', true)"/>
+          <div>
+            Utilisateur : {{$store.getters.userinfo.name}}
+          </div>
+
         <div v-if="cmpSnapshootlist.length">
-          Nombre de photos <b>{{cmpSnapshootlist.length}}</b>
+          Nombre de photos : <b>{{cmpSnapshootlist.length}}</b>
         </div>
       </div>
 
       <!-- [LINK] Never use <a> To define a basic link use the <router-link> directive has below -->
 
-      <div class="links">
-          <router-link :to="{ name: 'HomeView' }" active-class="active-link" class="router-link">Home</router-link>
+      <div class="links" v-if="$store.getters.userinfo">
           <router-link :to="{ name: 'DashboardView' }" active-class="active-link" class="router-link">Dashboard</router-link>
-          <router-link :to="{ name: 'CreateView' }" :itemtype="$route.params.type = 'album'" active-class="active-link" class="router-link">CreateView</router-link>
-          <!-- <router-link :to="{ name: 'SingleView' }" $route.params.type = 'snapshoot' active-class="active-link" class="router-link">SingleView</router-link> -->
+          <router-link :to="{ name: 'CreateAlbum' }" active-class="active-link" class="router-link">Create Album</router-link>
       </div>
   </header>
 </template>

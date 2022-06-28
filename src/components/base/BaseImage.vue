@@ -12,8 +12,7 @@
           isfull: false,
           isprimary: false,
         }"
-        @onClick="$emit( 'onDisplaySnapshoot', cmpItem.id )"
-      />
+        @onClick="$emit( 'onDisplaySnapshoot', cmpItem.id )"/>
   </figure>
 </template>
 

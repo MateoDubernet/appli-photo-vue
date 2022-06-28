@@ -8,8 +8,7 @@
     }"
     :type="cmpItem.type"
     v-text="cmpItem.content"
-    @click.prevent="$emit('onClick', cmpItem.action)"
-  />
+    @click.prevent="$emit('onClick', cmpItem.action)"/>
 </template>
 
 <script>

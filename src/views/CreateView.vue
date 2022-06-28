@@ -1,6 +1,6 @@
 <template>
   <section class="snapshoot-view-component section">
-      <div v-if="$route.params.type === 'snapshoot'">
+      <div v-if="$route.name === 'CreateSnapshoot'">
         <!-- Display video stream -->
         <video 
           ref="webcamhandeler"
@@ -15,7 +15,7 @@
         </article>
       </div>
 
-      <div v-if="$route.params.type === 'album'">
+      <div v-if="$route.name === 'CreateAlbum'">
         <article class="box" >
           <BaseForm 
             class="mb-4"
@@ -114,7 +114,6 @@
               return resolve(navigatorStreamSuccess)
             })
             .catch( navigatorStreamError => {
-              console.log(navigatorStreamError)
             })
           }
           else{ 
@@ -125,15 +124,29 @@
       
       // Define method to bind form 'submit' event
       onSubmit: function(event){
-        if( this.$route.params.type === 'snapshoot' ){
+        if( this.$route.name === 'CreateSnapshoot' ){
           // TODO: find a way to add 'author' ID in snapshoot
           // Dispatch store action
+          event.author = this.$store.getters.userinfo.id;
+
+          const albums = this.$store.getters.albumlist;
+
+          albums.forEach((album) => {
+
+            if (album.id == this.$route.params.id) {
+              
+              event.albumID = album.id;
+              album.snapshoots = event
+              
+            }
+          });
+
           this.$store.dispatch('pushSnapshootOperation', event)
         }
-        else if( this.$route.params.type === 'album' ){
+        else if( this.$route.name === 'CreateAlbum' ){
           // Add user id
           event.author = this.$store.getters.userinfo.id;
-          console.log('[DEBUG CreateView onSubmit]', event);
+          
           // Dispatch store action
           this.$store.dispatch('saveAlbumOperation', event)
         }
@@ -142,7 +155,7 @@
 
     mounted: function(){
       // Check param type to init webcam
-      if( this.$route.params.type === 'snapshoot' ){
+      if( this.$route.name === 'CreateSnapshoot' ){
         this.initVideo()
       }
     }

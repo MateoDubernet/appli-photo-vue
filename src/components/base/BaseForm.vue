@@ -26,6 +26,7 @@
     </fieldset>
 
     <BaseCallToAction 
+
       :item="{
         type: `submit`,
         content: cmpFormvalue.submit,
@@ -90,21 +91,18 @@
         onSubmit: function(fieldsets){
           // Extarct form value
           let returnedObject = {};
-          console.log('[DEBUG BaseForm onSubmit] fieldsets:', fieldsets);
-          console.log('[DEBUG BaseForm onSubmit] cmpFormvalue:', this.cmpFormvalue);
-          
+
           // Get each form fieldset
           for( let item of fieldsets ){
             returnedObject[item.name] = item.value
-
-            console.log('[DEBUG BaseForm onSubmit] item:', item);
-            console.log('[DEBUG BaseForm onSubmit] item.value:', item.value);
-            console.log('[DEBUG BaseForm onSubmit] item.value:', item.name);
           }
 
           // Return computed value
           this.$emit('onSubmit', returnedObject)
-          console.log('[DEBUG BaseForm onSubmit] returnedObject:', returnedObject);
+
+          this.cmpFormvalue.fieldsets.forEach(form => {
+          form.value = null;
+          });
         },
       },
   }
