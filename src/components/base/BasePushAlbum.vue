@@ -15,7 +15,7 @@
         <p>Author : {{$store.getters.userinfo.name}}</p>  
         <p>Snapshoot : {{albums.snapshoot}}</p>
         <div class="snapshoots-link">
-          <router-link :to="{ name: 'SingleView', params: {type: 'album', id: albums.id } }">Snapshoots >></router-link>
+          <router-link :to="{ name: 'SingleView', params: {type: 'album', id: albums.id } }">View Album >></router-link> <!--open one single albums in 'SingleView.vue'-->
         </div>
       </div>
     </section>
@@ -31,11 +31,20 @@
   export default {
     name: 'BasePushAlbum',
 
+      data(){
+        return {
+          album: Object,
+          snapshoot: Object,
+          albumSnapshootList: [],
+        }
+      },
+
     /* 
       [VUE] Component
       Used to inject child components
     */
 
+    // get number of snapshoot in albums
     mounted: async function(){
       this.$store.getters.albumlist.forEach(album => {
         this.albumSnapshootList = [];

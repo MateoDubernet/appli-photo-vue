@@ -6,17 +6,6 @@
       :snapshootlist="$store.getters.snapshootlist"
       @onLogout="onLogout"/>
 
-    <!-- 
-      TODO: Create 'BaseFlashnote.vue'
-      A flashnote is a modal that display success and error messages
-      - Find a way to automaticaly display error message if:
-        - User login error
-        - User registration error: email MUST be unique
-      - Find a way to automaticaly display success message if:
-        - User is correctly connected
-        - Album is created
-    -->
-
     <!-- Main -->
     <main>
       <!-- User router-view directive -->
@@ -34,12 +23,6 @@
 </template>
 
 <script>
-/* 
-  TODO: Connected/not connected
-  If a user is connected, the 'HomeView' is not usefull, the dashboard must be the home for a connected user
-  - Find a way to display 'DashboardView' if the user is connected
-*/
-
 /* eslint-disable no-unused-vars */
 /* 
   [IMPORT] Modules/components

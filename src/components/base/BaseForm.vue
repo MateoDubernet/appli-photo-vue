@@ -40,11 +40,6 @@
 
 <script>
 /* 
-  TODO: Basic security
-  When a user submit a form, we must wait for response and disable form submit.
-  - Find a way to clear form value at success
-*/
-/* 
   [IMPORT] Modules/components
 */
   import BaseCallToAction from './BaseCallToAction.vue';

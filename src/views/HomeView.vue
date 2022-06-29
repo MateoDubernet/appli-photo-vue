@@ -26,10 +26,8 @@
           action: formName === 'login' ? 'register' : 'login'
         }"
         :formvalue="formName === 'login' ? loginForm : registerForm"
-        @onClick="switchForm(),
-        formName = $event"
-
-        />
+        @onClick="resetError(),
+        formName = $event"/>
     </article>
   </section>
 </template>
@@ -125,8 +123,8 @@
     */
       methods: {
 
-        switchForm(){
-          this.$store.dispatch('errorOperation')
+        resetError(){
+          this.$store.dispatch('resetErrorOperation')
         },
 
         onSubmit: function(formName, event){

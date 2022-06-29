@@ -42,6 +42,11 @@ export default {
     },
 
     methods: {
+  /* 
+    TODO: Basic security
+    When a user submit a form, we must wait for response and disable form submit.
+    - Find a way to clear form value at success
+  */
       resetForm(){
         this.cmpFormvalue.fieldsets.forEach(form => {
           form.value = null;

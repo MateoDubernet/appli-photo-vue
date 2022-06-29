@@ -13,9 +13,12 @@
             <p class="snapshoot-id">ID : {{ snapshoot.id }}</p>
           </div>
       </router-link>
-
           </div>
         </div>
+      </article>
+
+
+      <article class="box" v-if="$route.params.type === 'snapshoot'">
         <!-- 
           TODO: Display list of album snapshoots
           - Get all album snapshoots
@@ -23,9 +26,6 @@
           - Display 'BaseImage' for each snapshoot
           - Link to display single snapshoot
         -->
-      </article>
-
-      <article class="box" v-if="$route.params.type === 'snapshoot'">
         <div class="snapshoot-header">
           <h1 class="is-size-3 snapshoot-title">Snapshoot : {{snapshoot.title}}</h1>
           <p>ID : {{snapshoot.id}}</p>
@@ -83,21 +83,18 @@ import { dexieDb } from '@/services/dexie.service'
         [DEXIE] Save
         Save API response in Dexie
       */
-        // Save new snapshot in IndexDB with Dexie.js
-        // this.cmpSingleItem = await dexieDb.snapshoots.get( +this.$route.params.id );
-        // if(!this.cmpSingleItem){
-        //   this.$router.push({ name: 'DashboardView' })
-        // }
+
+       // Get single album or snapshoot
         if (this.$route.params.type === 'album') {
           this.album = await dexieDb.albums.get( +this.$route.params.id );
         } else if (this.$route.params.type === 'snapshoot') {
           this.album = await dexieDb.snapshoots.get( +this.$route.params.id );
         }
 
+        // Save snapshoot in albumSnapshootList
         this.$store.getters.snapshootlist.forEach(snapshoot => {
           if (snapshoot.albumID == this.$route.params.id) {
             this.albumSnapshootList.push(snapshoot)
-            console.log(this.albumSnapshootList);
           }
         });
     }

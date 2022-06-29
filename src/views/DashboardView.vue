@@ -30,14 +30,6 @@
   export default {
     name: 'DashboardView',
 
-      data(){
-        return {
-          album: Object,
-          snapshoot: Object,
-          albumSnapshootList: [],
-        }
-      },
-
     /* 
       [VUE] Component
       Used to inject child components

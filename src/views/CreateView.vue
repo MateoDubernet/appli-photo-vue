@@ -27,6 +27,7 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 /* 
   [IMPORT] Modules/components 
 */
@@ -126,21 +127,17 @@
       onSubmit: function(event){
         if( this.$route.name === 'CreateSnapshoot' ){
           // TODO: find a way to add 'author' ID in snapshoot
-          // Dispatch store action
           event.author = this.$store.getters.userinfo.id;
-
           const albums = this.$store.getters.albumlist;
 
+          //add 'album' ID in snapshoot
           albums.forEach((album) => {
-
             if (album.id == this.$route.params.id) {
-              
               event.albumID = album.id;
               album.snapshoots = event
-              
             }
           });
-
+          // Dispatch store action
           this.$store.dispatch('pushSnapshootOperation', event)
         }
         else if( this.$route.name === 'CreateAlbum' ){

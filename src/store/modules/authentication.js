@@ -82,11 +82,18 @@ export default{
                         [STORE] Update
                         Commit new state with indexed object
                     */
+                   
                         commit( 'userinfo', { data: connectedUser } )
                         if (this.getters.userinfo) {
-                            AppRouter.push({ name: 'DashboardView' })
-                            dispatch('errorOperation')
-                          }
+
+                    /* 
+                        TODO: Connected/not connected
+                        If a user is connected, the 'HomeView' is not usefull, the dashboard must be the home for a connected user
+                        - Find a way to display 'DashboardView' if the user is connected
+                    */
+                        AppRouter.push({ name: 'DashboardView' })
+                        dispatch('resetErrorOperation')
+                    }
 
                 } else {
                     state.loginError = "Wrong email or password"
@@ -125,7 +132,8 @@ export default{
             })
         },
 
-        errorOperation: function({ commit, dispatch, state }){
+        
+        resetErrorOperation: function({ commit, dispatch, state }){
             state.loginError = null;
             state.registerError = null;
         },
