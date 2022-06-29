@@ -33,6 +33,7 @@
         isfull: true,
         isprimary: true,
       }"
+      :formvalue="cmpFormvalue"
       @onClick="onSubmit(cmpFormvalue.fieldsets)"/>
   </form>
 </template>
@@ -99,10 +100,6 @@
 
           // Return computed value
           this.$emit('onSubmit', returnedObject)
-
-          this.cmpFormvalue.fieldsets.forEach(form => {
-          form.value = null;
-          });
         },
       },
   }

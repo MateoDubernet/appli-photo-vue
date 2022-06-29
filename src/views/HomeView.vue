@@ -10,7 +10,7 @@
         @onSubmit="onSubmit(formName, $event)"/>
 
       <div class="error">
-        <BaseFlashnote/>
+        <BaseFlashnote :formName="formName"/>
       </div>
       
       <!-- Bind DOM event: @Event -->
@@ -25,7 +25,11 @@
           isprimary: false,
           action: formName === 'login' ? 'register' : 'login'
         }"
-        @onClick="formName = $event"/>
+        :formvalue="formName === 'login' ? loginForm : registerForm"
+        @onClick="switchForm(),
+        formName = $event"
+
+        />
     </article>
   </section>
 </template>
@@ -62,7 +66,7 @@
               name: `email`,
               required: true,
               min: 5,
-              value: 'mateo.dubernet@gmail.com'
+              value: null
             },
             {
               label: `Password`,
@@ -70,7 +74,7 @@
               name: `password`,
               required: true,
               min: 5,
-              value: 'test'
+              value: null
             }
           ]
         },
@@ -84,7 +88,7 @@
               name: `name`,
               required: true,
               min: 2,
-              value: 'Mateo'
+              value: null
             },
             {
               label: `Email`,
@@ -92,7 +96,7 @@
               name: `email`,
               required: true,
               min: 5,
-              value: 'mateo.dubernet@gmail.com'
+              value: null
             },
             {
               label: `Password`,
@@ -100,7 +104,7 @@
               name: `password`,
               required: true,
               min: 5,
-              value: 'test'
+              value: null
             },
             {
               label: `Repeate password`,
@@ -108,7 +112,7 @@
               name: `password-repeate`,
               required: true,
               min: 5,
-              value: 'test'
+              value: null
             }
           ]
         }
@@ -121,9 +125,12 @@
     */
       methods: {
 
+        switchForm(){
+          this.$store.dispatch('errorOperation')
+        },
+
         onSubmit: function(formName, event){
           // Check register form
-
           if( formName === 'register' ){
             if( event.password === event['password-repeate'] ){
               // Delete unused property

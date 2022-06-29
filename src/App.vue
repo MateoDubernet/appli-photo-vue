@@ -92,7 +92,6 @@
           }
         })
       },
-      mounted: function(){}
   }
   
 </script>

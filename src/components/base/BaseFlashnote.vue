@@ -1,6 +1,10 @@
 <template>
-    <section v-if="this.$store.state.loginError">
-        {{ this.$store.state.loginError }}
+    <section v-if="this.$store.getters.loginError && formName === 'login'">
+        {{ this.$store.getters.loginError }}
+    </section>
+
+    <section v-if="this.$store.getters.registerError && formName === 'register'">
+        {{ this.$store.getters.registerError }}
     </section>
 </template>
 
@@ -9,7 +13,7 @@ export default {
     name: 'BaseFlashnote',
 
     props: {
-      item: {
+      formName: {
         type: String,
         required: true,
         default: () => {}

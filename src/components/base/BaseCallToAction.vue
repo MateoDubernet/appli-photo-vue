@@ -8,7 +8,7 @@
     }"
     :type="cmpItem.type"
     v-text="cmpItem.content"
-    @click.prevent="$emit('onClick', cmpItem.action)"/>
+    @click.prevent="$emit('onClick', cmpItem.action), resetForm()"/>
 </template>
 
 <script>
@@ -24,7 +24,12 @@ export default {
         type: Object,
         required: true,
         default: () => {}
-      }
+      },
+      formvalue: {
+          type: Object,
+          required: false,
+          default: () => {}
+        }
     },
 
   /* 
@@ -32,7 +37,16 @@ export default {
     Used to have version of property value
   */
     computed: {
-      cmpItem: function(){ return this.item }
+      cmpItem: function(){ return this.item },
+      cmpFormvalue: function(){ return this.formvalue }
     },
+
+    methods: {
+      resetForm(){
+        this.cmpFormvalue.fieldsets.forEach(form => {
+          form.value = null;
+        });
+      }
+    }
 }
 </script>

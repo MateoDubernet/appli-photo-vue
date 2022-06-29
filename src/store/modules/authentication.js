@@ -9,12 +9,14 @@ export default{
     state: {
         userinfo: JSON.parse( localStorage.getItem('userinfo') ) || null,
         loginError: null,
+        registerError: null,
     },
 
     // Define getters
     getters: {
         userinfo: (state) => state.userinfo,
         loginError: (state) => state.loginError,
+        registerError: (state) => state.registerError,
     },
 
     // Define mutation (eq. setters)
@@ -31,12 +33,36 @@ export default{
                 Save API response in Dexie
             */
                 // Save new snapshot in IndexDB with Dexie.js
-                const newUserId = await dexieDb['users'].add( data );
-                
-                // Get new created snapshoot
-                const newUser = await dexieDb['users'].get(newUserId);
-        },
+                let users = null;
+                let uniqueEmail = true;
+                let i = 1;
 
+                if (data.email !== null && data.name !== null && data.password !== null) {
+                    console.log('test');
+                while (users !== undefined) {
+                    i = i++;
+                    users = await dexieDb['users'].get(i)
+                    if (users.email === data.email) {
+                        users = undefined;
+                        uniqueEmail = false;
+                        state.registerError = "Email already used"
+                    }
+                }
+
+                
+                if (uniqueEmail === true) {
+                    const newUserId = await dexieDb['users'].add(data);
+
+                    // Get new created snapshoot
+                    const newUser = await dexieDb['users'].get(newUserId);
+                }else{
+                    console.log(this.getters.registerError);
+                }
+            }else{
+                state.registerError = "All Fields required"
+            }                 
+            },
+        
         // Action to login user
         async loginOperation( { commit, dispatch, state }, data ){
             /* 
@@ -45,6 +71,7 @@ export default{
             */
            
                 // Get new created snapshoot
+                if (data.email !== null && data.password !== null) {
                 const connectedUser = await dexieDb['users'].get(data);
                 
                 if(connectedUser){
@@ -58,12 +85,15 @@ export default{
                         commit( 'userinfo', { data: connectedUser } )
                         if (this.getters.userinfo) {
                             AppRouter.push({ name: 'DashboardView' })
+                            dispatch('errorOperation')
                           }
-                          console.log(this.getters.userinfo);
+
                 } else {
-                    this.state.loginError = "Login Error"
-                    console.log(this.state.loginError);
+                    state.loginError = "Wrong email or password"
                 }
+            }else{
+                state.loginError = "All Fields required"
+            }
         },
 
         // Action to check user token
@@ -95,6 +125,11 @@ export default{
             })
         },
 
+        errorOperation: function({ commit, dispatch, state }){
+            state.loginError = null;
+            state.registerError = null;
+        },
+
         // Action to logout user
         logoutOperation( { commit, dispatch, state }, data ){
             // Delete localStorage to disable auto-connection
@@ -106,5 +141,5 @@ export default{
             */
                 commit( 'userinfo', { data: null } )
         }
-    }
+    },
 }
