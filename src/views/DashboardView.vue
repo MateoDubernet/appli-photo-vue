@@ -2,47 +2,66 @@
   <section class="dashboard-view-component section">
     <article class="box">
       <h1 class="component-title">Albums</h1>
-          <BasePushAlbum/>
+      <BasePushAlbum />
     </article>
 
-      <!-- 
-        TODO: Display list of albums
-        - Get album list from the store
-        - Generate a loop 'v-for' on album list
-        - Display a child compoenent 'BasePushAlbum.vue':
-          - title
-          - nombers of snapshoots
-          - link to display album
-      -->
+    <!-- 
+      TODO: Display list of albums
+      - Get album list from the store
+      - Generate a loop 'v-for' on album list
+      - Display a child component 'BasePushAlbum.vue':
+        - title
+        - number of snapshoots
+        - link to display album
+    -->
   </section>
 </template>
 
 <script>
 /* eslint-disable no-unused-vars */
 /* eslint-disable vue/no-unused-components */
-/* 
+
+/*
   [CTRL] App.vue
-  Define compoenent controller
+  Define component controller
 */
+import BasePushAlbum from '../components/base/BasePushAlbum.vue';
 
-  import BasePushAlbum from '../components/base/BasePushAlbum.vue';
+export default {
+  name: 'DashboardView',
 
-  export default {
-    name: 'DashboardView',
-
-    /* 
-      [VUE] Component
-      Used to inject child components
-    */
-      components: {
-        BasePushAlbum,
-      },
-  }
+  /*
+    [VUE] Components
+    Used to inject child components
+  */
+  components: {
+    BasePushAlbum,
+  },
+};
 </script>
-<style>
- .component-title{
-    font-size: 30px;
-    border-bottom: 1px solid black;
-    padding-bottom: 25px;
- }
+
+<style scoped>
+.dashboard-view-component {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+  flex: 1;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+}
+
+.component-title {
+  font-size: 30px;
+  border-bottom: 1px solid black;
+  padding-bottom: 15px;
+  margin-bottom: 1rem;
+}
+
+.box {
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
 </style>

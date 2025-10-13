@@ -1,33 +1,49 @@
-  <!-- 
-    TODO: Create 'BaseFlashnote.vue'
-    A flashnote is a modal that display success and error messages
-    - Find a way to automaticaly display error message if:
-      - User login error
-      - User registration error: email MUST be unique
-    - Find a way to automaticaly display success message if:
-      - User is correctly connected
-      - Album is created
-  -->
-<template>
-    <section v-if="this.$store.getters.loginError && formName === 'login'">
-        {{ this.$store.getters.loginError }}
-    </section>
+<!-- 
+  TODO: Create 'BaseFlashnote.vue'
+  A flashnote is a modal that displays success and error messages.
+  - Find a way to automatically display an error message if:
+    - User login error
+    - User registration error (email MUST be unique)
+  - Find a way to automatically display a success message if:
+    - User is correctly connected
+    - Album is created
+-->
 
-    <section v-if="this.$store.getters.registerError && formName === 'register'">
-        {{ this.$store.getters.registerError }}
-    </section>
+<template>
+  <section v-if="$store.getters.loginError && formName === 'login'">
+    {{ $store.getters.loginError }}
+  </section>
+
+  <section v-if="$store.getters.registerError && formName === 'register'">
+    {{ $store.getters.registerError }}
+  </section>
 </template>
 
 <script>
 export default {
-    name: 'BaseFlashnote',
+  name: 'BaseFlashnote',
 
-    props: {
-      formName: {
-        type: String,
-        required: true,
-        default: () => {}
-      }
+  props: {
+    formName: {
+      type: String,
+      required: true,
+      default: () => '',
     },
-}
+  },
+};
 </script>
+
+<style scoped>
+section {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+section[v-if] {
+  background-color: #ffe2e2;
+  color: #b00020;
+  border: 1px solid #f5c6cb;
+}
+</style>

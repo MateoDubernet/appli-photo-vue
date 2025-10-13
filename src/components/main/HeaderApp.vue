@@ -3,105 +3,126 @@
     <h1 class="appli-title-header">
       Application Photo
     </h1>
-      <div v-if="!cmpUserinfo">
-        User not connected
-      </div>
-      
-      <div v-else class="logout">
-        <button 
-          class="button"
-          v-text="`Logout`"
-          @click.prevent="$emit('onLogout', true)"/>
-          <div>
-            Utilisateur : {{$store.getters.userinfo.name}}
-          </div>
 
-        <div v-if="cmpSnapshootlist.length">
-          Nombre de photos : <b>{{cmpSnapshootlist.length}}</b>
-        </div>
+    <div v-if="!cmpUserinfo">
+      User not connected
+    </div>
+
+    <div v-else class="logout">
+      <button
+        class="button"
+        v-text="'Logout'"
+        @click.prevent="$emit('onLogout', true)"
+      />
+
+      <div>
+        Utilisateur : {{ $store.getters.userinfo.name }}
       </div>
 
-      <!-- [LINK] Never use <a> To define a basic link use the <router-link> directive has below -->
-
-      <div class="links" v-if="$store.getters.userinfo">
-          <router-link :to="{ name: 'DashboardView' }" active-class="active-link" class="router-link">Dashboard</router-link>
-          <router-link :to="{ name: 'CreateAlbum' }" active-class="active-link" class="router-link">Create Album</router-link>
+      <div v-if="cmpSnapshootlist.length">
+        Nombre de photos : <b>{{ cmpSnapshootlist.length }}</b>
       </div>
+    </div>
+
+    <!-- [LINK] Never use <a>. Use <router-link> directive as below -->
+    <div class="links" v-if="$store.getters.userinfo">
+      <router-link
+        :to="{ name: 'DashboardView' }"
+        active-class="active-link"
+        class="router-link"
+      >
+        Dashboard
+      </router-link>
+      <router-link
+        :to="{ name: 'CreateAlbum' }"
+        active-class="active-link"
+        class="router-link"
+      >
+        Create Album
+      </router-link>
+    </div>
   </header>
 </template>
 
 <script>
-/* 
+/*
   [CTRL] App.vue
-  Define compoenent controller
+  Define component controller
 */
-  export default {
-    name: 'HeaderApp',
+export default {
+  name: 'HeaderApp',
 
-    /* 
-      [VUE] Props
-      Data binding from parent component
-    */
-      props: {
-        userinfo: {
-          type: Object,
-          required: false,
-          default: () => null
-        },
-        snapshootlist: {
-          type: Array,
-          required: false,
-          default: () => []
-        }
-      },
+  /*
+    [VUE] Props
+    Data binding from parent component
+  */
+  props: {
+    userinfo: {
+      type: Object,
+      required: false,
+      default: () => null,
+    },
+    snapshootlist: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+  },
 
-    /* 
-      [VUE] Computed
-      Used to have version of property value
-    */
-      computed: {
-        cmpUserinfo: function(){ return this.userinfo },
-        cmpSnapshootlist: function(){ return this.snapshootlist },
-      },
-  }
+  /*
+    [VUE] Computed
+    Used to have version of property value
+  */
+  computed: {
+    cmpUserinfo() {
+      return this.userinfo;
+    },
+    cmpSnapshootlist() {
+      return this.snapshootlist;
+    },
+  },
+};
 </script>
 
-<style>
-.header-app-component{
-  background: bisque;
-  text-align: center;
-  border-bottom: 1px solid black;
-}
-
-.appli-title-header{
-  font-size: 35px;
-  padding: 35px;
-}
-
-.links{
+<style scoped>
+.header-app-component {
   display: flex;
-  background-color: rgb(169, 223, 245);
-  justify-content: space-evenly;
-  padding: 7px;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  position: relative;
 }
 
-.router-link{
-  color: rgb(0, 0, 0);
+.appli-title-header {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
-.router-link:hover{
- text-decoration: underline;
- color: rgb(114, 107, 107);
+.links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
 }
 
-.logout{
-  position: absolute;
-  top: 0;
-  right: 0;
+.router-link {
+  color: #3273dc;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-.active-link{
-  color: rgb(114, 107, 107);
+.router-link:hover {
   text-decoration: underline;
+}
+
+.logout {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  text-align: right;
+  font-size: 0.875rem;
+  color: #555;
 }
 </style>
