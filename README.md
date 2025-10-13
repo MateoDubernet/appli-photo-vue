@@ -66,7 +66,7 @@ Cela représentes les différentes tâches que j'ai eu à réaliser pour mon dev
 
 ### 2. Création d’albums et de photos
 - Les utilisateurs peuvent créer de nouveaux albums.
-- Pour chaque album, il est possible d’ajouter des snapshoots (photos) avec un titre et une légende.
+- Pour chaque album, il est possible d’ajouter des snapshoots (photos) avec un titre et une légende, l'image n'a pas pu être implémenter.
 - Les photos ne sont actuellement pas liées à un utilisateur spécifique, donc tous les albums et photos sont partagés globalement.
 
 ### 3. Affichage des albums
