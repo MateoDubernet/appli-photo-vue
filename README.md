@@ -1,7 +1,7 @@
 # appli-photo-vue
 
 ## Contexte
-appli-photo-vue est une application web construite avec Vue.js qui permet de créer des albums et d’y ajouter des photos avec titre et légende. Les albums et photos sont stockés localement via Dexie.js et gérés globalement avec Vuex. Les fonctionnalités de séparation des photos par utilisateur ainsi que la prise de photos n’ont pas pu être implémentées.
+appli-photo-vue est une application web construite avec Vue.js qui permet de créer des albums et d’y ajouter des photos avec titre et légende. Les albums et photos sont stockés localement via Dexie.js et gérés globalement avec Vuex. Les fonctionnalités de séparation des photos par utilisateur ainsi que la prise de photos n’ont pas pu être implémentées par manque de temps.
 
 ---
 
