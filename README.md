@@ -9,7 +9,7 @@ Les fonctionnalités de séparation des photos par utilisateur ainsi que la pris
 
 ---
 
-## Fonctionnalités
+## Prérequis
 
 - Node.js et npm installés
 
