@@ -3,8 +3,15 @@
 ## Contexte
 
 ### Description
-Projet réalisé durant mon alternance dans le cadre d'un devoir maison, il a été développé avec Electron, Node.js et TypeScript.\
-Il s'agit d'une application web construite avec Vue.js qui permet de créer des albums et d’y ajouter des photos avec titre et légende. Les albums et photos sont stockés localement via Dexie.js et gérés globalement avec Vuex. Les fonctionnalités de séparation des photos par utilisateur ainsi que la prise de photos n’ont pas pu être implémentées par manque de temps.
+Projet réalisé durant mon alternance dans le cadre d'un devoir maison.\
+Il s'agit d'une application web construite avec Vue.js qui permet de créer des albums et d’y ajouter des photos avec titre et légende. Les albums et photos sont stockés localement via Dexie.js et gérés globalement avec Vuex.\
+Les fonctionnalités de séparation des photos par utilisateur ainsi que la prise de photos n’ont pas pu être implémentées par manque de temps.
+
+---
+
+## Fonctionnalités
+
+- Node.js et npm installés
 
 ---
 
