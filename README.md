@@ -18,16 +18,20 @@ Les fonctionnalités de séparation des photos par utilisateur ainsi que la pris
 ## Installation & Lancement
 ### 1. Cloner le projet
 ```bash
-    git clone <url-du-repo>
-    cd <nom-du-dossier>
+    git clone https://github.com/MateoDubernet/appli-photo-vue.git
 ```
 
-### 2. Installer les dépendances
+### 2. Aller sur le projet
+```bash
+    cd appli-photo-vue
+```
+
+### 3. Installer les dépendances
 ```bash
     npm install
 ```
 
-### 3. Lancer l’application
+### 4. Lancer l’application
 ```bash
     npm run serve
 ```
