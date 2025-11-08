@@ -36,6 +36,8 @@ Les fonctionnalités de séparation des photos par utilisateur ainsi que la pris
     npm run serve
 ```
 
+Aller à l'adresse indiquer dans le terminal
+
 ---
 
 ## TODOs
