@@ -1,16 +1,6 @@
-/* eslint-disable no-unused-vars */
-
-/*
-  [IMPORTS] Vue.js
-  Import main modules to define router
-*/
 import { createRouter, createWebHistory } from 'vue-router';
 import StoreModule from '../store/index';
 
-/*
-  [ROUTER] Paths
-  Define an array of objects to configure router paths
-*/
 const routerPaths = [
   {
     path: '/',
@@ -44,49 +34,30 @@ const routerPaths = [
   },
 ];
 
-/*
-  [ROUTER] Define
-  Create new router with vue-router module
-*/
 const AppRouter = createRouter({
   routes: routerPaths,
   history: createWebHistory(),
 });
 
-/*
-  [ROUTE] Before
-  Used before displaying route component
-*/
 AppRouter.beforeEach(async (to, from, next) => {
-  // Authguard: check user info before enabling route
   if (to.meta.authguard) {
-    // Check 'userinfo' in local storage
     if (StoreModule.getters.userinfo) {
-      // Get user info from API
       const connectedUser = await StoreModule.dispatch('pkceOperation', {
         email: StoreModule.getters.userinfo.email,
         password: StoreModule.getters.userinfo.password,
       });
 
-      // Check user info from API
       if (connectedUser.status === 200) {
         next();
       } else {
-        // Redirect unconnected user to 'HomeView'
         next({ name: 'HomeView' });
       }
     } else {
-      // Redirect unconnected user to 'HomeView'
       next({ name: 'HomeView' });
     }
   } else {
-    // Enable public route
     next();
   }
 });
 
-/*
-  [EXPORT] Router
-  Export router to use it in 'main.js'
-*/
 export default AppRouter;

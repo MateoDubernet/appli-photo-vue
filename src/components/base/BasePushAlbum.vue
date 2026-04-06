@@ -1,14 +1,3 @@
-<!-- 
-  TODO: Create 'BasePushAlbum'
-  A "Push" component is used to display general item information.
-  Add HTML tags to:
-  - display album title
-  - display snapshoot quantity
-
-  Add functionality to:
-  - open one single snapshoot in 'SingleView.vue'
--->
-
 <template>
   <section class="basePushAlbum-view-component section">
     <div
@@ -32,13 +21,6 @@
 </template>
 
 <script>
-/* eslint-disable no-unused-vars */
-/* eslint-disable vue/no-unused-components */
-
-/*
-  [CTRL] App.vue
-  Define component controller
-*/
 export default {
   name: 'BasePushAlbum',
 
@@ -50,13 +32,8 @@ export default {
     };
   },
 
-  /*
-    [VUE] Component
-    Used to inject child components
-  */
   components: {},
 
-  // Get number of snapshoots in albums
   mounted() {
     this.$store.getters.albumlist.forEach((album) => {
       this.albumSnapshootList = [];

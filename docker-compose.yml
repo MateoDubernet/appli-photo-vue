@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  photo-app:
+    build: .
+    container_name: photo-app-vue
+    ports:
+      - "80:80"

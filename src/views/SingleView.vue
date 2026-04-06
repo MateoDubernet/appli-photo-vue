@@ -27,13 +27,6 @@
     </article>
 
     <article class="box" v-if="$route.params.type === 'snapshoot'">
-      <!-- 
-        TODO: Display list of album snapshoots
-        - Get all album snapshoots
-        - Generate a loop 'v-for' on snapshoot list
-        - Display 'BaseImage' for each snapshoot
-        - Link to display single snapshoot
-      -->
       <div class="snapshoot-header">
         <h1 class="is-size-3 snapshoot-title">Snapshoot : {{ snapshoot.title }}</h1>
         <p>ID : {{ snapshoot.id }}</p>
@@ -55,17 +48,8 @@
 <script>
 import { dexieDb } from '@/services/dexie.service';
 
-/*
-  [CTRL] App.vue
-  Define component controller
-*/
 export default {
   name: 'SingleView',
-
-  /*
-    [VUE] Data
-    Local component state
-  */
   data() {
     return {
       album: Object,
@@ -73,27 +57,13 @@ export default {
       albumSnapshootList: [],
     };
   },
-
-  /*
-    [VUE] Methods
-    Used to add functionalities
-  */
   methods: {
     getSnapshoot(snapshoot) {
       this.snapshoot = snapshoot;
     },
   },
-
-  /*
-    [VUE] Components
-    Inject child components
-  */
   components: {},
 
-  /*
-    [VUE] Mounted
-    Fetch data after component mounts
-  */
   async mounted() {
     // Get single album or snapshoot
     if (this.$route.params.type === 'album') {
@@ -102,7 +72,6 @@ export default {
       this.snapshoot = await dexieDb.snapshoots.get(+this.$route.params.id);
     }
 
-    // Save snapshoots in albumSnapshootList
     this.$store.getters.snapshootlist.forEach((snapshoot) => {
       if (snapshoot.albumID == this.$route.params.id) {
         this.albumSnapshootList.push(snapshoot);

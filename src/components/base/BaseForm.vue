@@ -1,5 +1,4 @@
 <template>
-  <!-- Bind 'submit' event to emit 'onSubmit' event -->
   <form
     class="base-form-component"
     @submit.prevent="onSubmit(cmpFormvalue.fieldsets)"
@@ -43,22 +42,12 @@
 </template>
 
 <script>
-/*
-  [IMPORT] Modules/components
-*/
+
 import BaseCallToAction from './BaseCallToAction.vue';
 
-/*
-  [CTRL] App.vue
-  Define component controller
-*/
 export default {
   name: 'BaseForm',
 
-  /*
-    [VUE] Props
-    Data binding from parent component
-  */
   props: {
     formvalue: {
       type: Object,
@@ -67,39 +56,23 @@ export default {
     },
   },
 
-  /*
-    [VUE] Computed
-    Used to have version of property value
-  */
   computed: {
     cmpFormvalue() {
       return this.formvalue;
     },
   },
 
-  /*
-    [VUE] Components
-    Used to inject child components
-  */
   components: {
     BaseCallToAction,
   },
 
-  /*
-    [VUE] Methods
-    Used to add functionalities
-  */
   methods: {
     onSubmit(fieldsets) {
-      // Extract form value
       const returnedObject = {};
-
-      // Get each form fieldset
       for (const item of fieldsets) {
         returnedObject[item.name] = item.value;
       }
 
-      // Emit computed value to parent
       this.$emit('onSubmit', returnedObject);
     },
   },

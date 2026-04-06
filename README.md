@@ -1,76 +1,35 @@
 # appli-photo-vue
 
-## Contexte
-
-### Description
-Projet réalisé durant mon alternance dans le cadre d'un devoir maison.\
-Il s'agit d'une application web construite avec Vue.js qui permet de créer des albums et d’y ajouter des photos avec titre et légende. Les albums et photos sont stockés localement via Dexie.js et gérés globalement avec Vuex.\
+## Présentation
+Projet réalisé durant mon alternance dans le cadre d'un devoir maison.Il s'agit d'une application web construite qui permet de créer des albums et d’y ajouter des photos avec titre et légende.
 Les fonctionnalités de séparation des photos par utilisateur ainsi que la prise de photos n’ont pas pu être implémentées par manque de temps.
 
----
-
-## Prérequis
-
-- Node.js et npm installés
+### Architecture
+**Frontend** : Next.js (Cartographie interactive et interface utilisateur).
+**Bases de données** : Stocker localement via Dexie.js.
+**Infrastructure** : Docker & Docker Compose.
 
 ---
 
 ## Installation & Lancement
-### 1. Cloner le projet
+### 1. Clonage du dépôt
 ```bash
     git clone https://github.com/MateoDubernet/appli-photo-vue.git
 ```
 
-### 2. Aller sur le projet
+### 2. Lancement (Docker)
+**Prérequis :** [Docker Desktop](https://www.docker.com/products/docker-desktop) installé et lancé.
+
 ```bash
-    cd appli-photo-vue
+    cd ./appli-photo-vue
+    docker-compose up --build
 ```
 
-### 3. Installer les dépendances
-```bash
-    npm install
-```
+### 3. Accès
+- **Application** : http://localhost (Port 80)
 
-### 4. Lancer l’application
-```bash
-    npm run serve
-```
-
-Aller à l'adresse indiquer dans le terminal
-
----
-
-## TODOs
-Cela représentes les différentes tâches que j'ai eu à réaliser pour mon devoir.
-
-1. Display Albums
-- File: components/base/BasePushAlbum.vue
-    - Sections: template, script → mounted
-
-2. Add Author ID in Snapshoot Value
-- File: views/CreateView.vue
-    - Sections: script → methods → onSubmit
-
-3. Display Album Snapshoot
-- File: views/SingleView.vue
-    - Sections: template, script → mounted
-
-4. Create BaseFlashnote
-- File: components/base/BaseFlashnote.vue
-- Related Store Module: store/modules/authentication.js
-    - state
-    - getters
-    - actions → registerOperation, loginOperation, resetErrorOperation
-- Related View: views/HomeView.vue
-    - script → methods → resetError
-
-5. Clear Form at Success
-- File: components/base/BaseCallToAction.vue
-    - script → methods → resetForm
-
-6. Handle Connected / Not Connected User
-- File: store/modules/authentication.js
-    - actions → loginOperation
+[!IMPORTANT]
+Assurez-vous que le port 80 n'est pas déjà utilisé par une autre application sur votre machine avant de lancer le conteneur.
 
 ---
 

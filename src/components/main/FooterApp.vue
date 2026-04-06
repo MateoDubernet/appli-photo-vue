@@ -14,8 +14,8 @@ export default {
 
 <style scoped>
 .footer-app-component {
-  height: 60px;           /* taille fixe */
-  flex-shrink: 0;         /* ne rétrécit jamais */
+  height: 60px;
+  flex-shrink: 0;
   background-color: #fff;
   text-align: center;
   box-shadow: 0 -2px 6px rgba(0,0,0,0.05);

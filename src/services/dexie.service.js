@@ -1,17 +1,9 @@
-/*
-  [IMPORT] Definition
-  Import and define Dexie.js
-*/
 import Dexie from 'dexie';
 
 export const dexieDb = new Dexie('appli-photo-vue');
 
-/*
-  [DEXIE] Setup
-  Define usable collections (tables)
-*/
 dexieDb.version(1).stores({
-  users: '++id, name, email, password',            // Primary key and indexed props
-  snapshoots: '++id, title, caption, base64, author, albumID', // Primary key and indexed props
-  albums: '++id, title, snapshoots, author',      // Primary key and indexed props
+  users: '++id, name, email, password',
+  snapshoots: '++id, title, caption, base64, author, albumID',
+  albums: '++id, title, snapshoots, author',
 });

@@ -23,18 +23,10 @@ import BaseCallToActionVue from './BaseCallToAction.vue';
 export default {
   name: 'BaseImage',
 
-  /*
-    [VUE] Components
-    Used to inject child components
-  */
   components: {
     BaseCallToActionVue,
   },
 
-  /*
-    [VUE] Props
-    Data binding from parent component
-  */
   props: {
     item: {
       type: Object,
@@ -43,10 +35,6 @@ export default {
     },
   },
 
-  /*
-    [VUE] Computed
-    Used to have version of property value
-  */
   computed: {
     cmpItem() {
       return this.item;

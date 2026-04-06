@@ -16,10 +16,6 @@
 export default {
   name: 'BaseCallToAction',
 
-  /*
-    [VUE] Props
-    Data binding from parent component
-  */
   props: {
     item: {
       type: Object,
@@ -33,10 +29,6 @@ export default {
     },
   },
 
-  /*
-    [VUE] Computed
-    Used to have version of property value
-  */
   computed: {
     cmpItem() {
       return this.item;
@@ -46,15 +38,7 @@ export default {
     },
   },
 
-  /*
-    [VUE] Methods
-  */
   methods: {
-    /*
-      TODO: Basic security
-      When a user submit a form, we must wait for response and disable form submit.
-      - Find a way to clear form value at success
-    */
     resetForm() {
       if (!this.cmpFormvalue?.fieldsets) return;
       this.cmpFormvalue.fieldsets.forEach((form) => {

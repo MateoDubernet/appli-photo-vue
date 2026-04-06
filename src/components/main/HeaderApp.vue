@@ -24,7 +24,6 @@
       </div>
     </div>
 
-    <!-- [LINK] Never use <a>. Use <router-link> directive as below -->
     <div class="links" v-if="$store.getters.userinfo">
       <router-link
         :to="{ name: 'DashboardView' }"
@@ -45,17 +44,9 @@
 </template>
 
 <script>
-/*
-  [CTRL] App.vue
-  Define component controller
-*/
 export default {
   name: 'HeaderApp',
 
-  /*
-    [VUE] Props
-    Data binding from parent component
-  */
   props: {
     userinfo: {
       type: Object,
@@ -69,10 +60,6 @@ export default {
     },
   },
 
-  /*
-    [VUE] Computed
-    Used to have version of property value
-  */
   computed: {
     cmpUserinfo() {
       return this.userinfo;

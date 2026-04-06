@@ -1,14 +1,3 @@
-<!-- 
-  TODO: Create 'BaseFlashnote.vue'
-  A flashnote is a modal that displays success and error messages.
-  - Find a way to automatically display an error message if:
-    - User login error
-    - User registration error (email MUST be unique)
-  - Find a way to automatically display a success message if:
-    - User is correctly connected
-    - Album is created
--->
-
 <template>
   <section v-if="$store.getters.loginError && formName === 'login'">
     {{ $store.getters.loginError }}

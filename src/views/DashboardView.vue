@@ -4,36 +4,14 @@
       <h1 class="component-title">Albums</h1>
       <BasePushAlbum />
     </article>
-
-    <!-- 
-      TODO: Display list of albums
-      - Get album list from the store
-      - Generate a loop 'v-for' on album list
-      - Display a child component 'BasePushAlbum.vue':
-        - title
-        - number of snapshoots
-        - link to display album
-    -->
   </section>
 </template>
 
 <script>
-/* eslint-disable no-unused-vars */
-/* eslint-disable vue/no-unused-components */
-
-/*
-  [CTRL] App.vue
-  Define component controller
-*/
 import BasePushAlbum from '../components/base/BasePushAlbum.vue';
 
 export default {
   name: 'DashboardView',
-
-  /*
-    [VUE] Components
-    Used to inject child components
-  */
   components: {
     BasePushAlbum,
   },

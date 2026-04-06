@@ -1,7 +1,6 @@
 <template>
   <section class="home-view-component section">
     <article class="box" v-if="!$store.getters.userinfo">
-      <!-- Inject value to child component as a HTML property -->
       <BaseForm
         class="mb-4"
         :formvalue="formName === 'login' ? loginForm : registerForm"
@@ -12,7 +11,6 @@
         <BaseFlashnote :formName="formName" />
       </div>
 
-      <!-- Bind DOM event: @Event -->
       <BaseCallToAction
         :item="{
           type: 'button',
@@ -32,29 +30,15 @@
 </template>
 
 <script>
-/*
-  [IMPORT] Modules/components
-*/
 import BaseForm from '../components/base/BaseForm.vue';
 import BaseFlashnote from '../components/base/BaseFlashnote.vue';
 import BaseCallToAction from '../components/base/BaseCallToAction.vue';
 
-/*
-  [CTRL] App.vue
-  Define component controller
-*/
 export default {
   name: 'HomeView',
-
-  /*
-    [VUE] Data
-    Local component state
-  */
   data() {
     return {
       formName: 'login',
-
-      // Form values
       loginForm: {
         title: 'Connect to your account',
         submit: 'Login',
@@ -77,10 +61,6 @@ export default {
     };
   },
 
-  /*
-    [VUE] Methods
-    Used to add functionalities
-  */
   methods: {
     resetError() {
       this.$store.dispatch('resetErrorOperation');
@@ -89,10 +69,7 @@ export default {
     onSubmit(formName, event) {
       if (formName === 'register') {
         if (event.password === event['password-repeate']) {
-          // Delete unused property
           delete event['password-repeate'];
-
-          // Use store action
           this.$store.dispatch('registerOperation', event);
         } else {
           alert('Password mismatch');
@@ -103,10 +80,6 @@ export default {
     },
   },
 
-  /*
-    [VUE] Components
-    Inject child components
-  */
   components: {
     BaseForm,
     BaseCallToAction,
