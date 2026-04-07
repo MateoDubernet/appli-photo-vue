@@ -4,10 +4,10 @@
 Projet réalisé durant mon alternance dans le cadre d'un devoir maison.Il s'agit d'une application web construite qui permet de créer des albums et d’y ajouter des photos avec titre et légende.
 Les fonctionnalités de séparation des photos par utilisateur ainsi que la prise de photos n’ont pas pu être implémentées par manque de temps.
 
-### Architecture
-**Frontend** : Next.js (Cartographie interactive et interface utilisateur).
-**Bases de données** : Stocker localement via Dexie.js.
-**Infrastructure** : Docker & Docker Compose.
+### Stack Technique
+- **Vuejs**.
+- **Dexiejs**.
+- **Docker**.
 
 ---
 
@@ -20,21 +20,20 @@ Les fonctionnalités de séparation des photos par utilisateur ainsi que la pris
 ### 2. Lancement (Docker)
 **Prérequis :** [Docker Desktop](https://www.docker.com/products/docker-desktop) installé et lancé.
 
+[!IMPORTANT]
+Assurez-vous que le port 80 n'est pas déjà utilisé par une autre application sur votre machine avant de lancer le conteneur.
+
 ```bash
     cd ./appli-photo-vue
     docker-compose up --build
 ```
 
 ### 3. Accès
-- **Application** : http://localhost (Port 80)
-
-[!IMPORTANT]
-Assurez-vous que le port 80 n'est pas déjà utilisé par une autre application sur votre machine avant de lancer le conteneur.
+Ouvrir un navigateur web et aller à l'adresse: http://localhost
 
 ---
 
 ## Fonctionnalités
-
 ### 1. Accueil et authentification
 - Les utilisateurs peuvent se connecter ou créer un compte via le formulaire de la page d’accueil.
 - Les erreurs de connexion ou d’inscription sont affichées via des flashnotes.
