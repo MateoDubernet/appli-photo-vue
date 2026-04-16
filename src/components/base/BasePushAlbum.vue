@@ -21,6 +21,9 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
+/* eslint-disable vue/no-unused-components */
+
 export default {
   name: 'BasePushAlbum',
 

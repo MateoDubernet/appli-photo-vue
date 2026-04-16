@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-async-promise-executor */
+
 import { dexieDb } from '@/services/dexie.service';
 import AppRouter from '@/router';
 

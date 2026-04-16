@@ -8,6 +8,9 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
+/* eslint-disable vue/no-unused-components */
+
 import BasePushAlbum from '../components/base/BasePushAlbum.vue';
 
 export default {

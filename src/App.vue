@@ -17,6 +17,7 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 import { dexieDb } from './services/dexie.service';
 import HeaderApp from './components/main/HeaderApp.vue';
 import FooterApp from './components/main/FooterApp.vue';

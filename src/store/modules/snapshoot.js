@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import { dexieDb } from '@/services/dexie.service';
 
 export default {

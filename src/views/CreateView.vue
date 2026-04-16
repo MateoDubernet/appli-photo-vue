@@ -30,6 +30,7 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 import BaseForm from '../components/base/BaseForm.vue';
 
 export default {
