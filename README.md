@@ -5,9 +5,9 @@ Projet réalisé durant mon alternance dans le cadre d'un devoir maison.Il s'agi
 Les fonctionnalités de séparation des photos par utilisateur ainsi que la prise de photos n’ont pas pu être implémentées par manque de temps.
 
 ### Stack Technique
-- **Vuejs**.
-- **Dexiejs**.
-- **Docker**.
+- **Vuejs**
+- **Dexiejs**
+- **Docker**
 
 ---
 
